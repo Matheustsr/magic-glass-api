@@ -18,7 +18,7 @@ export default class CompanyService {
 		const companyExists = await Company.findOne({ where: { name: companyData.name } });
 
         if (companyExists) {
-			throw new ExceptionUtils('Esta empresa ja existe!');
+			throw new ExceptionUtils('COMPANY_ALREADY_EXISTS');
         }
 
         await Company.create(companyData);
@@ -28,7 +28,7 @@ export default class CompanyService {
 		const companyExists = await this.findCompany(companyData.id)
 
         if (!companyExists) {
-			throw new ExceptionUtils('Esta empresa não existe!');
+			throw new ExceptionUtils('INVALID_COMPANY');
         }
 
         await Company.destroy({ where: { id: companyData.id } });

@@ -8,7 +8,7 @@ export default class EmployeeController extends BaseController {
 
 		this.employeeService = new EmployeeService();
 
-		this.bindActions(['store', 'destroy', 'updateDepartment', 'updateCompany']);
+		this.bindActions(['store', 'destroy', 'updateDepartment', 'updateCompany', 'updateRole']);
 	}
 
 	async store(req, res) {
@@ -62,6 +62,21 @@ export default class EmployeeController extends BaseController {
 		try {
 			const employee = await this.employeeService.updateCompany({
 				...req.params
+			});
+
+			this.successHandler(employee, res);
+		} catch (error) {
+			this.errorHandler(error, req, res);
+		}
+	}
+
+	async updateRole(req, res) {
+		await PermissionUtils.verifyRootPermission(req.auth);
+
+		try {
+			const employee = await this.employeeService.updateRole({
+				...req.params,
+				user_role: req.data.user_type
 			});
 
 			this.successHandler(employee, res);

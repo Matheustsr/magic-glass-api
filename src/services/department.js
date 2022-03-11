@@ -26,7 +26,7 @@ export default class DepartmentService {
 		const departmentExists = await Department.findOne({ where: { name: departmentData.name } });
 
         if (departmentExists) {
-			throw new ExceptionUtils('Este departamento ja existe!');
+			throw new ExceptionUtils('DEPARTMENT_ALREADY_EXISTS');
         }
 
         await Department.create(departmentData);
@@ -36,7 +36,7 @@ export default class DepartmentService {
 		const departmentExists = await this.findDepartment(departmentData.id)
 
         if (!departmentExists) {
-			throw new ExceptionUtils('Este departamento não existe!');
+			throw new ExceptionUtils('INVALID_DEPARTMENT');
         }
 
         await Department.destroy({ where: { id: departmentData.id } });
@@ -60,11 +60,11 @@ export default class DepartmentService {
 		const employeeData = await this.getEmployee(data.manager_id)
 
         if (!departmentExists) {
-			throw new ExceptionUtils('Este departamento não existe!');
+			throw new ExceptionUtils('INVALID_DEPARTMENT');
         }
 
 		if (employeeData.user_type !== 'MANAGER') {
-			throw new ExceptionUtils('Este usuário não pode ser gestor de um setor!');
+			throw new ExceptionUtils('NOT_AUTHORIZED!');
 		}
 
 		await Department.update({
@@ -80,7 +80,7 @@ export default class DepartmentService {
 		const companyExists = await this.findCompany(data.id)
 
 		if (!companyExists) {
-			throw new ExceptionUtils('Esta empresa não existe!');
+			throw new ExceptionUtils('INVALID_COMPANY');
         }
 		await Department.update({
 			company_id: data.id

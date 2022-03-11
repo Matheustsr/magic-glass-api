@@ -24,11 +24,11 @@ export default class EmployeeService {
 
 	async store(userData) {
 		const userExists = await Employee.findOne({
-            where: { email: userEmail },
+            where: { email: userData.email },
         });
 
         if (userExists) {
-			throw new ExceptionUtils('Este usuário já existe!');
+			throw new ExceptionUtils('USER_ALREADY_EXISTS');
         }
 
         await Employee.create(userData);
@@ -38,19 +38,22 @@ export default class EmployeeService {
 		const userExists = await this.findUser(userData.id)
 
         if (!userExists) {
-			throw new ExceptionUtils('Este usuário não existe!');
+			throw new ExceptionUtils('INVALID_USER');
         }
 
         await Employee.destroy({ where: { id: userData.id } });
 	}
 
 	async updateCompany(data) {
-		//TODO
-		//verificar se o usuario logado e gestor e se ele pertence a company
+		const isManagerLogged = await this.checkDepartmentOwner(data.id)
 		const userExists = await this.findUser(data.user_id)
 
+		if (!isManagerLogged) {
+			throw new ExceptionUtils('NOT_AUTHORIZED');
+		}
+
 		if (!userExists) {
-			throw new ExceptionUtils('Este usuário não existe!');
+			throw new ExceptionUtils('INVALID_USER');
 		}
 
 		await Employee.update({
@@ -67,11 +70,11 @@ export default class EmployeeService {
 		const isManagerLogged = await this.checkDepartmentOwner(data.id)
 
 		if (!isManagerLogged) {
-			throw new ExceptionUtils('Você precisa ser gestor do setor!');
+			throw new ExceptionUtils('NOT_AUTHORIZED');
 		}
 
         if (!userExists) {
-			throw new ExceptionUtils('Este usuário não existe!');
+			throw new ExceptionUtils('INVALID_USER');
         }
 
         await Employee.update({
@@ -89,11 +92,11 @@ export default class EmployeeService {
 		const companyExists = await this.findCompany(data.company_id)
 
 		if (!companyExists) {
-			throw new ExceptionUtils('Essa empresa não existe!');
+			throw new ExceptionUtils('INVALID_COMPANY');
 		}
 
         if (!userExists) {
-			throw new ExceptionUtils('Este usuário não existe!');
+			throw new ExceptionUtils('INVALID_USER');
         }
 
         await Employee.update({
@@ -101,6 +104,22 @@ export default class EmployeeService {
 		}, {
 			where: {
 				id: data.user_id
+			}
+		});
+	}
+
+	async updateRole(data) {
+		const userExists = await this.findUser(data.id)
+
+        if (!userExists) {
+			throw new ExceptionUtils('INVALID_USER');
+        }
+
+        await Employee.update({
+			user_type: data.user_role
+		}, {
+			where: {
+				id: data.id
 			}
 		});
 	}

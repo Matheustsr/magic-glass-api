@@ -31,6 +31,15 @@ const schema = {
 			company_id: yup.number().required()
 		}).noUnknown()
 	},
+	updateRole: {
+		params: yup.object({
+			id: yup.number().required()
+		}).noUnknown(),
+		body: yup.object({
+			user_type: yup.string().transform(sanitizeValue).max(255)
+				.oneOf(['MANAGER', 'EMPLOYEE', 'COMPANY_DIRECTOR']).required()
+		})
+	}
 
 };
 
@@ -38,5 +47,6 @@ export default {
 	store: schema.store,
 	find: schema.find,
 	updateDepartment: schema.updateDepartment,
-	updateCompany: schema.updateCompany
+	updateCompany: schema.updateCompany,
+	updateRole: schema.updateRole
 };

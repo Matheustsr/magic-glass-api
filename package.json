@@ -1,9 +1,9 @@
 {
-  "name": "boilerplate-api",
-  "version": "v1.0.2",
+  "name": "magic-api",
+  "version": "v1.0.0",
   "main": "index.js",
-  "repository": "git@github.com:amigoapp/boilerplate-api.git",
-  "author": "Augusto Ferreira <augusto.ferreira@amigoapp.com.br>",
+  "repository": "",
+  "author": "Matheus Vieira <matheustsr@outlook.com>",
   "license": "MIT",
   "engines": {
     "node": ">= 16 <= 16.14.0",
@@ -14,12 +14,7 @@
     "start": "node build/index.js",
     "start:dev": "NODE_ENV=development nodemon --delay 500ms --inspect --exec babel-node index.js",
     "lint": "eslint --ext .js ./src",
-    "lint:fix": "yarn lint --fix",
-    "test": "NODE_ENV=test mocha --recursive ./src/**/*.spec.js",
-    "test:unit": "NODE_ENV=test mocha ./src/test/unit",
-    "test:integration": "NODE_ENV=test mocha ./src/test/integration",
-    "build:api": "babel ./index.js --out-dir ./build --source-maps && babel ./src --out-dir ./build/src --source-maps",
-    "build:templates": "copy './src/templates/*.html' './build/src/templates'"
+    "lint:fix": "yarn lint --fix"
   },
   "dependencies": {
     "@bugsnag/js": "^7.16.2",
