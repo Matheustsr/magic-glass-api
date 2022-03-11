@@ -15,6 +15,7 @@ export default class DepartmentRoutes extends BaseRoutes {
 		this.router.put('/manager/:id/', this.SchemaValidator.validate(DepartmentSchema.updateManager), this.departmentController.updateManager);
 		this.router.put('/:department_id/company/:id/', this.SchemaValidator.validate(DepartmentSchema.updateCompany), this.departmentController.updateCompany);
 
+		this.router.get('/:id/employees', this.SchemaValidator.validate(DepartmentSchema.find), this.departmentController.listEmployees);
 		this.router.get('/', this.departmentController.list);
 
 		return this.router;

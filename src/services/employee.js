@@ -45,7 +45,7 @@ export default class EmployeeService {
 	}
 
 	async updateCompany(data) {
-
+		//TODO
 		//verificar se o usuario logado e gestor e se ele pertence a company
 		const userExists = await this.findUser(data.user_id)
 

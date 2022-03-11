@@ -1,5 +1,5 @@
-import ExceptionUtils from '../utils/exception';
 import Logger from '../utils/logger';
+import ExceptionUtils from '../utils/exception';
 
 class BaseController {
 	bindActions(actions) {

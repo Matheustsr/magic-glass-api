@@ -5,6 +5,7 @@ import BaseRoutes from './base';
 export default class SessionRoutes extends BaseRoutes {
 	constructor() {
 		super();
+
 		this.sessionController = new SessionController();
 	}
 

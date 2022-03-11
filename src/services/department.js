@@ -1,5 +1,5 @@
-import { Department, Employee, Company } from '@models';
 import { ExceptionUtils } from '@utils';
+import { Department, Employee, Company } from '@models';
 
 
 export default class DepartmentService {
@@ -46,6 +46,12 @@ export default class DepartmentService {
 		return await Department.findAll({
 			where: { manager_id: id },
 			attributes: ['id', 'name']
+		});
+	}
+
+	async listEmployees({ id }) {
+		return await Employee.findAll({
+			where: { department_id: id }
 		});
 	}
 

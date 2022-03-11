@@ -5,6 +5,7 @@ import BaseRoutes from './base';
 export default class CompanyRoutes extends BaseRoutes {
 	constructor() {
 		super();
+
 		this.companyController = new CompanyController();
 	}
 

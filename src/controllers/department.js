@@ -8,7 +8,7 @@ export default class DepartmentController extends BaseController {
 
 		this.departmentService = new DepartmentService();
 
-		this.bindActions(['store', 'destroy', 'list', 'updateManager', 'updateCompany']);
+		this.bindActions(['store', 'destroy', 'list', 'updateManager', 'updateCompany', 'listEmployees']);
 	}
 
 	async store(req, res) {
@@ -82,6 +82,19 @@ export default class DepartmentController extends BaseController {
 		} catch (error) {
 			this.errorHandler(error, req, res);
 		}
+	}
 
+	async listEmployees(req, res) {
+		await PermissionUtils.verifyManagerPermission(req.auth);
+
+		try {
+			const departments = await this.departmentService.listEmployees({
+				id: req.params.id
+			});
+
+			this.successHandler(departments, res);
+		} catch (error) {
+			this.errorHandler(error, req, res);
+		}
 	}
 }
