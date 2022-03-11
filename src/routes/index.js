@@ -1,5 +1,11 @@
-import NFSeRoutes from './nfse';
+import SessionRoutes from './session';
+import EmployeeRoutes from './employee';
+import CompanyRoutes from './company';
+import DepartmentRoutes from './department';
 
 export {
-	NFSeRoutes
+	SessionRoutes,
+	EmployeeRoutes,
+	CompanyRoutes,
+	DepartmentRoutes
 };

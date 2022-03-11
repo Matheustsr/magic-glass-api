@@ -21,26 +21,5 @@ export const config = {
 				max: 10
 			}
 		}]
-	},
-	redis: {
-		host: process.env.REDIS_HOST,
-		timeout: {
-			five_minutes: 300,
-			one_day: 86400,
-			six_hours: 21600,
-			monthly: (60 * 60 * 24 * 30)
-		}
-	},
-	aws: {
-		bucket: process.env.AWS_S3_BUCKET,
-		prefix: process.env.AWS_S3_PREFIX,
-		accessKeyId: process.env.AWS_S3_ACCESS_KEY,
-		secretAccessKey: process.env.AWS_S3_SECRET_KEY,
-		region: 'us-west-2'
-	},
-	plugnotas: {
-		api_token: process.env.PLUGNOTAS_API_TOKEN,
-		api_url: process.env.PLUGNOTAS_API_URL,
-		webservice_ip: process.env.PLUGNOTAS_WEBSERVICE_IP
 	}
 };

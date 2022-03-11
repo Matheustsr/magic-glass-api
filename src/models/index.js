@@ -1,5 +1,9 @@
-import FinanceNFSe from './finance-nfse';
+import Employee from './employee';
+import Company from './company';
+import Department from './department';
 
 export {
-	FinanceNFSe
+	Employee,
+	Company,
+	Department
 };

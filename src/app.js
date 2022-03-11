@@ -1,41 +1,31 @@
 import cors from 'cors';
 import http from 'http';
 import helmet from 'helmet';
-import dotenv from 'dotenv';
 import express from 'express';
 
-import Cache from './modules/cache';
 import Database from './config/databases';
 import Routes from './config/routes.js';
-import { LoggerUtils, HandlebarsHelpersUtils } from '@utils';
+import { LoggerUtils } from '@utils';
 
 class App {
 	constructor() {
-		if (process.env.NODE_ENV !== 'production') {
-			dotenv.config({ path: `${__dirname}/../.env` });
-		}
-
 		this.app = express();
 		this.port = process.env.PORT || '3000';
 		this.httpServer = http.createServer(this.app);
 
 		new LoggerUtils();
 
-		this.cacheModule = new Cache();
 		this.databaseModule = new Database();
 	}
 
 	async initializeModules() {
 		return Promise.all([
-			this.cacheModule.connect(),
 			this.databaseModule.connect()
 		]);
 	}
 
 	async setup() {
 		const routes = new Routes();
-
-		HandlebarsHelpersUtils.registerHelpers();
 
 		this.app.use(express.json());
 		this.app.use(express.urlencoded({ extended: false }));
@@ -61,7 +51,6 @@ class App {
 		return () => {
 			this.httpServer.close(async error => {
 				await Promise.all([
-					this.cacheModule.disconnect(),
 					this.databaseModule.disconnect()
 				]);
 

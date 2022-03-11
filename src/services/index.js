@@ -1,7 +1,9 @@
-import InvoiceService from './invoice';
-import NFSeService from './nfse';
+import EmployeeService from './employee';
+import CompanyService from './company';
+import DepartmentService from './department';
 
 export {
-	InvoiceService,
-	NFSeService
+	EmployeeService,
+	CompanyService,
+	DepartmentService
 };

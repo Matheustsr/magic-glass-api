@@ -1,5 +1,11 @@
-import NFSeSchema from './nfse';
+import SessionSchema from './sessions';
+import EmployeeSchema from './employee';
+import CompanySchema from './company';
+import DepartmentSchema from './department';
 
 export {
-	NFSeSchema
+	SessionSchema,
+	EmployeeSchema,
+	CompanySchema,
+	DepartmentSchema
 };

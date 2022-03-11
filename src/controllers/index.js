@@ -1,5 +1,11 @@
-import NFSeController from './nfse';
+import SessionController from './session';
+import EmployeeController from './employee';
+import CompanyController from './company';
+import DepartmentController from './department';
 
 export {
-	NFSeController
+	SessionController,
+	EmployeeController,
+	CompanyController,
+	DepartmentController
 };

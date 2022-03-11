@@ -9,6 +9,12 @@ class Database {
 		this.models = {};
 		this.databaseOptions = {
 			dialect: 'postgres',
+			dialectOptions: {
+				ssl: {
+				  require: true,
+				  rejectUnauthorized: false
+				}
+			},
 			port: process.env.DB_PORT || 5432,
 			logging: false,
 			minifyAliases: true,

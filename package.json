@@ -18,16 +18,13 @@
     "test": "NODE_ENV=test mocha --recursive ./src/**/*.spec.js",
     "test:unit": "NODE_ENV=test mocha ./src/test/unit",
     "test:integration": "NODE_ENV=test mocha ./src/test/integration",
-    "build": "yarn build:api && yarn build:templates && yarn upload-sourcemaps",
-    "upload-sourcemaps": "node upload-sourcemaps.js",
     "build:api": "babel ./index.js --out-dir ./build --source-maps && babel ./src --out-dir ./build/src --source-maps",
     "build:templates": "copy './src/templates/*.html' './build/src/templates'"
   },
   "dependencies": {
-    "@bugsnag/js": "^7.16.1",
-    "@bugsnag/plugin-express": "^7.16.1",
-    "@bugsnag/source-maps": "^2.3.1",
-    "aws-sdk": "^2.1071.0",
+    "@bugsnag/js": "^7.16.2",
+    "@bugsnag/plugin-express": "^7.16.2",
+    "aws-sdk": "^2.1091.0",
     "axios": "^0.25.0",
     "bcryptjs": "^2.4.3",
     "bwip-js": "^3.0.4",
@@ -44,10 +41,11 @@
     "moment": "^2.29.1",
     "pg": "^8.7.3",
     "pg-hstore": "^2.3.4",
-    "puppeteer": "^13.2.0",
+    "puppeteer": "^13.5.1",
     "redis": "^3.1.2",
     "sanitize-html": "^2.7.0",
     "sequelize": "^6.16.1",
+    "sequelize-cli": "^6.4.1",
     "yup": "^0.32.11"
   },
   "devDependencies": {

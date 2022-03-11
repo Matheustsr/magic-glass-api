@@ -1,2 +1,3 @@
-# Boilerplate-api v1.0.2
+# magic-glass-api v1.0.0
 NodeJS >=16 &lt;= 16.14.0
+
